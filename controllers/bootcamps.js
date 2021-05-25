@@ -28,7 +28,7 @@ module.exports.getBootcamps=asyncHandler( async (req,res,next)=>{
     queryStr=queryStr.replace(/\b(gt|gte|lte|lt|in)\b/g, match=>`$${match}`);   
 
     // finding resourse
-    query=Bootcamp.find(JSON.parse(queryStr));
+    query=Bootcamp.find(JSON.parse(queryStr)).populate('courses');
 
     // select fields
     if(req.query.select){
@@ -124,15 +124,16 @@ module.exports.updateBootcamp=asyncHandler( async (req,res,next)=>{
 module.exports.deleteBootcamp=asyncHandler (async (req,res,next)=>{    
    
     const bootcamp=await Bootcamp.findByIdAndDelete(req.params.id);
-    
+
     if(!bootcamp){
         return next(new ErrorResponse(`Bootcamp! not found with id of ${req.params.id}`, 404 ));    
     }
-
+    
+    bootcamp.remove();
     res.statusCode=200;
     res.json( { success:true, data: {}});
  
-});
+}); 
 
 //get bootcamps within a radius
 // @routee get /api/v1/bootcamps/radius/:zipcode/:distance

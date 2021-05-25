@@ -10,6 +10,7 @@ dotenv.config({ path:'./config/config.env'});
 
 // route files
 const bootcamps=require('./routes/bootcamps');
+const courses=require('./routes/courses');
 
 
 // connect to database
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 
 
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 app.use(errorHandler);
 
