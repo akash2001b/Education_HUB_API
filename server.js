@@ -1,9 +1,11 @@
+const path=require('path');
 const express=require('express');
 const dotenv=require('dotenv');
 const morgan=require('morgan');
 const colors=require('colors');
 const connectDB=require('./config/db');
 const errorHandler=require('./middleware/error');
+const fileupload=require('express-fileupload');
 // load evn vars
 dotenv.config({ path:'./config/config.env'});
 
@@ -21,6 +23,12 @@ const app=express();
 app.use(express.json());
 app.use(morgan('dev'));
 
+// File uploading
+app.use(fileupload());
+
+
+// set statuc folder
+app.use( express.static(path.join(__dirname,'public')));
 
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
