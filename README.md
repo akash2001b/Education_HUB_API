@@ -821,7 +821,3 @@ URL: {{URL}}/api/v1/courses/60b4ced0da3a3e26d5f9c332
 ```
 
 
-
----
-[Back to top](#devcamper-api)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2021-06-05 18:37:17 by [docgen](https://github.com/thedevsaddam/docgen)
